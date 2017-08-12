@@ -1,4 +1,8 @@
-## Instructions
+## Get Started
+
+npm start
+
+## Coding Instructions
 
 As Amne expands, we will want to understand large-scale patterns in home values.
 
