@@ -1,0 +1,31 @@
+.container {
+  display: grid;
+  margin-top: 30px;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    "dropzone dropzone"
+    "input output";
+
+  @include breakpoint(medium) {
+    grid-template-columns: 30% auto 30%;
+    grid-template-rows: 100%;
+    grid-template-areas:
+      "input dropzone output"
+  }
+
+  .dropzoneContainer {
+    @include gridArea(dropzone);
+  }
+
+  .input {
+    @include gridArea(input);
+  }
+
+  .output {
+    @include gridArea(output);
+  }
+}
