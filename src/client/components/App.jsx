@@ -39,9 +39,9 @@ class App extends Component {
   }
 
   parseFile(input) {
-    let data = input.target.result.split(/[\n ]+/);
-    let n = parseInt(data[0], 10);
-    let k = parseInt(data[1], 10);
+    let data = input.target.result.split(/[\n ]+/).filter(v => v !== "").map(v => parseInt(v, 10));
+    let n = data[0];
+    let k = data[1];
     let averagePrices = data.slice(2);
 
     if (200000 < n || n < 1) {
@@ -56,7 +56,6 @@ class App extends Component {
   }
 
   handleConstraints(message) {
-    console.log(`handle`);
     this.setState({
       fileContent: null,
       n: null,
@@ -68,7 +67,6 @@ class App extends Component {
   }
 
   toggleAlert() {
-    console.log(`toggled, this.state.alert: ${ this.state.alert }`);
     this.setState({
       alert: !this.state.alert
     })
