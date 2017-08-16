@@ -8,8 +8,8 @@ const Output = ({ n, k, averagePrices, handleConstraints }) => {
     let incrementCount = 0;
     let decrementCount = 0;
     for (let j = i; j < k + i - 1; j++) {
-      let currentVal = averagePrices[j];
-      let nextVal = averagePrices[j + 1];
+      let currentVal = parseInt(averagePrices[j], 10);
+      let nextVal = parseInt(averagePrices[j + 1], 10);
 
       if (currentVal >= 1000000 || currentVal < 0) {
         handleConstraints("All sale prices must be positive integers less than 1,000,000");

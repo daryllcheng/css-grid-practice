@@ -39,10 +39,14 @@ class App extends Component {
   }
 
   parseFile(input) {
-    let data = input.target.result.split(/[\n ]+/).filter(v => v !== "").map(v => parseInt(v, 10));
-    let n = data[0];
-    let k = data[1];
+    let data = input.target.result.split(/[\n ]+/); 
+    let n = parseInt(data[0], 10);
+    let k = parseInt(data[1], 10);
     let averagePrices = data.slice(2);
+
+    while (averagePrices[averagePrices.length - 1] === "") {
+      averagePrices.pop();
+    }
 
     if (200000 < n || n < 1) {
       this.handleConstraints("n must be an integer between 1 and 200000");
