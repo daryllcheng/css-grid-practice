@@ -21,6 +21,9 @@ const Output = ({ n, k, averagePrices, handleConstraints }) => {
         decrementCount = 0;
         if (incrementCount >= 2) {
           difference++;
+          if (incrementCount > 2) {
+            difference++;
+          }
         }
       }
       if (currentVal > nextVal) {
@@ -29,6 +32,9 @@ const Output = ({ n, k, averagePrices, handleConstraints }) => {
         incrementCount = 0;
         if (decrementCount >= 2) {
           difference--;
+          if (decrementCount > 2) {
+            difference--;
+          }
         }
       }
     }
