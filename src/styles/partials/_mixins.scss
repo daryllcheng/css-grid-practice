@@ -1,5 +1,6 @@
 @mixin gridArea($area){
   grid-area: $area;
+  margin: 5px;
 }
 
 @mixin breakpoint($point) {

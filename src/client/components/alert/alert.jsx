@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
 const Alert = ({ alert, errorMessage, toggleAlert }) => {
-  const actions = [<FlatButton label="Okay" primary={ true } onTouchTap={ () => toggleAlert() } />];
+  const actions = [<FlatButton label="Okay" primary={ true } onTouchTap={ toggleAlert() } />];
   console.log(`alert: ${ alert }, message: ${ errorMessage }`);
   return (
     <div>

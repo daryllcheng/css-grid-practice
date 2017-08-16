@@ -1,22 +1,27 @@
 import React from 'react';
 import ReactScrollableList from 'react-scrollable-list';
 
-const Output = ({ n, k, averagePrices }) => {
+const Output = ({ n, k, averagePrices, handleConstraints }) => {
   let output = [];
   for (let i = 0; i <= n - k; i++) {
     let difference = 0;
     let incrementCount = 0;
     let decrementCount = 0;
     for (let j = i; j < k + i - 1; j++) {
-      if (averagePrices[j] < averagePrices[j + 1]) {
+      let currentVal = parseInt(averagePrices[j], 10);
+      let nextVal = parseInt(averagePrices[j + 1], 10);
+      if (currentVal >= 1000000 || currentVal < 0) {
+        handleConstraints("All sale prices must be positive integers less than 1,000,000");
+      }
+      if (currentVal < nextVal) {
         difference++;
         incrementCount++;
         decrementCount = 0;
-        if (incrementCount >= 2) {
+      if (incrementCount >= 2) {
           difference++;
         }
       }
-      if (averagePrices[j] > averagePrices[j + 1]) {
+      if (currentVal > nextVal) {
         difference--;
         decrementCount++;
         incrementCount = 0;
@@ -27,6 +32,7 @@ const Output = ({ n, k, averagePrices }) => {
     }
     output.push(difference); //OR console.log(difference) if you prefer
   }
+
   return (
     <div className="output">
       <ReactScrollableList

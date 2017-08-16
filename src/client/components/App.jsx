@@ -39,9 +39,9 @@ class App extends Component {
   }
 
   parseFile(input) {
-    let data = input.target.result.split(/[\n ]+/).map(val => parseInt(val, 10));
-    let n = data[0];
-    let k = data[1];
+    let data = input.target.result.split(/[\n ]+/);
+    let n = parseInt(data[0], 10);
+    let k = parseInt(data[1], 10);
     let averagePrices = data.slice(2);
 
     if (200000 < n || n < 1) {
@@ -56,16 +56,19 @@ class App extends Component {
   }
 
   handleConstraints(message) {
+    console.log(`handle`);
     this.setState({
       fileContent: null,
       n: null,
       k: null,
       averagePrices: null,
-      errorMessage: message
-    }, () => this.toggleAlert())
+      errorMessage: message,
+      alert: !this.state.alert
+    })
   }
 
   toggleAlert() {
+    console.log(`toggled, this.state.alert: ${ this.state.alert }`);
     this.setState({
       alert: !this.state.alert
     })
@@ -80,13 +83,13 @@ class App extends Component {
             <div className="days">{ this.state.n || "_" } Days</div>
             <div className="window">Window size of { this.state.k || "_" }</div>
           </Dropzone>
+          <MuiThemeProvider>
+            { this.state.alert ? 
+              <Alert errorMessage={ this.state.errorMessage } toggleAlert={ () => this.toggleAlert } alert={ this.state.alert } />
+              : null
+            }
+          </MuiThemeProvider>
         </div>
-        <MuiThemeProvider>
-          { this.state.alert ? 
-            <Alert errorMessage={ this.state.errorMessage } toggleAlert={ () => this.toggleAlert() } alert={ this.state.alert } />
-            : null
-          }
-        </MuiThemeProvider>
         {
           this.state.n !== null ?
           <Input n={ this.state.n } averagePrices={ this.state.averagePrices }/>
@@ -94,7 +97,7 @@ class App extends Component {
         }
         {
           this.state.n !== null ? 
-          <Output n={ this.state.n } k={ this.state.k } averagePrices={ this.state.averagePrices }/>
+          <Output n={ this.state.n } k={ this.state.k } averagePrices={ this.state.averagePrices } handleConstraints={ this.handleConstraints }/>
           : <div className="react-scrollable-list"><i className="fa fa-arrow-circle-o-up" aria-hidden="true"></i></div>
         }
       </div>

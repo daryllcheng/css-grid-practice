@@ -2,7 +2,7 @@
 /* Font */
 .container {
   display: grid;
-  margin-top: 30px;
+  margin: 30px;
   justify-items: center;
   align-items: center;
   grid-template-columns: 1fr 1fr;
@@ -14,11 +14,14 @@
       grid-template-rows: 100%;
       grid-template-areas: "input dropzone output"; } }
   .container .dropzoneContainer {
-    grid-area: dropzone; }
+    grid-area: dropzone;
+    margin: 5px; }
   .container .input {
-    grid-area: input; }
+    grid-area: input;
+    margin: 5px; }
   .container .output {
-    grid-area: output; }
+    grid-area: output;
+    margin: 5px; }
 
 .dropzoneStyle {
   width: 200px;
